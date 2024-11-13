@@ -13,6 +13,7 @@ class CustomPopup extends StatelessWidget {
   final bool showArrow;
   final EdgeInsets contentPadding;
   final double? contentRadius;
+  final VoidCallback? onBeforeCallback;
   final BoxDecoration? contentDecoration;
 
   const CustomPopup({
@@ -28,6 +29,7 @@ class CustomPopup extends StatelessWidget {
     this.contentPadding = const EdgeInsets.all(15),
     this.contentRadius,
     this.contentDecoration,
+    this.onBeforeCallback,
   });
 
   void _show(BuildContext context) {
@@ -35,6 +37,9 @@ class CustomPopup extends StatelessWidget {
     final renderBox = anchor.findRenderObject() as RenderBox?;
     if (renderBox == null) return;
     final offset = renderBox.localToGlobal(renderBox.paintBounds.topLeft);
+
+    onBeforeCallback!();
+
     Navigator.of(context).push(_PopupRoute(
       targetRect: offset & renderBox.paintBounds.size,
       backgroundColor: backgroundColor,
