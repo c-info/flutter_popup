@@ -52,7 +52,7 @@ class CustomPopup extends StatelessWidget {
       contentRadius: contentRadius,
       contentDecoration: contentDecoration,
       child: content,
-    )).then((){
+    ))?.then((){
       onAfterCallback!();
     });
   }
