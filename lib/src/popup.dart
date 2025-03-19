@@ -14,6 +14,7 @@ class CustomPopup extends StatelessWidget {
   final EdgeInsets contentPadding;
   final double? contentRadius;
   final VoidCallback? onBeforeCallback;
+  final VoidCallback? onAfterCallback;
   final BoxDecoration? contentDecoration;
 
   const CustomPopup({
@@ -30,6 +31,7 @@ class CustomPopup extends StatelessWidget {
     this.contentRadius,
     this.contentDecoration,
     this.onBeforeCallback,
+    this.onAfterCallback = (){},
   });
 
   void _show(BuildContext context) {
@@ -50,7 +52,9 @@ class CustomPopup extends StatelessWidget {
       contentRadius: contentRadius,
       contentDecoration: contentDecoration,
       child: content,
-    ));
+    )).then((){
+      onAfterCallback!();
+    });
   }
 
   @override
