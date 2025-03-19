@@ -42,7 +42,8 @@ class CustomPopup extends StatelessWidget {
 
     onBeforeCallback!();
 
-    Navigator.of(context).push(_PopupRoute(
+    Navigator.of(context)
+        .push(_PopupRoute(
       targetRect: offset & renderBox.paintBounds.size,
       backgroundColor: backgroundColor,
       arrowColor: arrowColor,
@@ -52,7 +53,8 @@ class CustomPopup extends StatelessWidget {
       contentRadius: contentRadius,
       contentDecoration: contentDecoration,
       child: content,
-    ))?.then((_){
+    ))
+        .then((_) {
       onAfterCallback!();
     });
   }
